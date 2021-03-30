@@ -29,23 +29,11 @@ public:
 		printf("address is %d\n", instance_);
 	}
 
-	class garbageCollect
-	{
-		public:
-		~garbageCollect()
-		{
-			delete Singleton::instance_;
-			printf("garbage collection !\n");
-		}
-	};
-
-private:
+public:
 	static Singleton* instance_;
-	static garbageCollect garbage_collector;
 };
 
 Singleton* Singleton::instance_ = NULL;
-Singleton::garbageCollect Singleton::garbage_collector;
 
 int main ()
 {
@@ -54,5 +42,7 @@ int main ()
 	test1->printAdd();
 	test2->printAdd();
 
+	if (Singleton::instance_) delete Singleton::instance_;
+	
 	return 0;
 }
