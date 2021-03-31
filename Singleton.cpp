@@ -29,11 +29,26 @@ public:
 		printf("address is %d\n", instance_);
 	}
 
+	class memClear // 申明一个清理类，专门用于内存回收，不需要手动释放内存
+	{
+	public:
+		~memClear()
+		{
+			if (instance_) 
+			{
+				delete instance_;
+				instance_ = NULL;
+			}
+		}
+	};
+
 public:
 	static Singleton* instance_;
+	static memClear cleaner_;
 };
 
 Singleton* Singleton::instance_ = NULL;
+Singleton::memClear Singleton::cleaner_;
 
 int main ()
 {
@@ -41,8 +56,6 @@ int main ()
 	Singleton* test2 = Singleton::getSingleton();
 	test1->printAdd();
 	test2->printAdd();
-
-	if (Singleton::instance_) delete Singleton::instance_;
 	
 	return 0;
 }
