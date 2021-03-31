@@ -8,15 +8,8 @@ private:
 public:
 	static Singleton* getSingleton()
 	{
-		if (instance_)
-		{
-			return instance_;
-		}
-		else
-		{
-			instance_ = new Singleton();
-			return instance_;
-		}
+		static Singleton* instance = new Singleton();;
+		return instance_;
 	}
 
 	~Singleton()
@@ -29,11 +22,7 @@ public:
 		printf("address is %d\n", instance_);
 	}
 
-public:
-	static Singleton* instance_;
 };
-
-Singleton* Singleton::instance_ = NULL;
 
 int main ()
 {
