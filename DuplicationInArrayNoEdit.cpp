@@ -21,7 +21,7 @@ int getDuplication(const int* numbers, size_t length)
 	size_t eidx = length - 1;
 	while (sidx != eidx)
 	{
-		size_t mid = (sidx + eidx) / 2;
+		size_t mid = (sidx + eidx) >> 1;
 
 		int count_left = countRange(numbers, length, sidx, mid);
 		if (count_left > mid - sidx + 1)

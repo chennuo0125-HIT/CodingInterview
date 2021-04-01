@@ -13,13 +13,13 @@ bool Find( int **matrix, int rows, int cols, int number)
 		// 如果数组元素大于检索值，则该列数值都大于检索值，可以跳过这一列
 		if (number < matrix[rux][ruy])
 		{
-			rux -= 1;
+			--rux;
 			continue;
 		}
 		// 如果数组元素小于检索值，则该行数值都小于检索值，可以跳过这一行
 		if (number > matrix[rux][ruy])
 		{
-			ruy += 1;
+			++ruy;
 			continue;
 		}
 	}
